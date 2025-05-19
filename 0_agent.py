@@ -1,6 +1,7 @@
 # starter code 
 from dotenv import load_dotenv
 from smolagents import CodeAgent, InferenceClientModel
+from mcp.mcp_web_search import web_search # Updated import
 
 load_dotenv()
 
@@ -10,7 +11,7 @@ def main():
 
     # Create agent
     agent = CodeAgent(
-        tools=[],
+        tools=[web_search], # Updated to use web_search
         model=model,
         #add_base_tools=True,
         #additional_authorized_imports=["time", "pandas", "json"],
@@ -23,7 +24,7 @@ def main():
             break
         try:
             result = agent.run(task)
-            print("\Agent response:\n", result)
+            print("\nAgent response:\n", result)
         except Exception as e:
             print(f"Error: {e}")
 

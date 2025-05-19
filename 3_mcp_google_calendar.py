@@ -39,13 +39,21 @@ def main():
     # Retrieve tools from the Google Calendar MCP server, sanitizing names
     with MCPAdapt(server_parameters, SafeNameAdapter()) as calendar_tool_list:
         calendar_tools = [*calendar_tool_list]
+        print(f"DEBUG: Loaded calendar tools: {calendar_tools}") # Added for debugging
         
         # Manager agent orchestrates the workflow
         agent = CodeAgent(
             tools=calendar_tools,
             model=model,
             add_base_tools=True,
-            additional_authorized_imports=["time"],
+            additional_authorized_imports=[
+                "time",
+                "os", # Added
+                "google.auth.transport.requests", # Added
+                "google.oauth2.credentials", # Added
+                "google_auth_oauthlib.flow", # Added
+                "googleapiclient.discovery", # Added
+            ],
         )
 
         # Interactive REPL via manager

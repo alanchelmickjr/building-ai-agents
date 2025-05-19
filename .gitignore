@@ -11,3 +11,8 @@ smolagents-ref
 .gradio
 
 *.log
+
+.roo
+/.roo
+.venv
+/.venv

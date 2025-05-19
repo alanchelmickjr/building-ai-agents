@@ -32,7 +32,7 @@ def main():
     manager_agent = CodeAgent(
         tools=[],
         model=model,
-        add_base_tools=False,
+        add_base_tools=True,  # Changed from False to True
         managed_agents=[research_agent, persona_agent],
         additional_authorized_imports=[],
     )
